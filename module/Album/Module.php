@@ -1,5 +1,10 @@
 <?php
 namespace Album;
+// Add these import statements:
+use Album\Model\Album;
+use Album\Model\AlbumTable;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\TableGateway\TableGateway;
 
 class Module
 {
