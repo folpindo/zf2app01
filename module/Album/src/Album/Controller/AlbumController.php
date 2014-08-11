@@ -34,4 +34,13 @@ class AlbumController extends AbstractActionController
     public function deleteAction()
     {
     }
+	public function passwordAction(){
+		$request = $this->getRequest();
+		$userEmail = $request->getParam('userEmail');
+		$verbose = $request->getParam('verbose');
+		if(isset($verbose)){
+			$verbose = 'verbose';
+		}
+		echo "reset password action dispatch [user email: $userEmail, verbose:$verbose]\n";
+	}
 }

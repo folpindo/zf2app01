@@ -29,4 +29,20 @@ return array(
             'album' => __DIR__ . '/../view',
         ),
     ),
+
+	'console'=> array(
+		'router'=> array(
+			'routes' => array(
+				'user-reset-password' => array(
+					'options' => array(
+						'route' => 'user resetpassword [--verbose|-v] <userEmail>',
+						'defaults' => array(
+							'controller' => 'Album\Controller\Album',
+							'action' => 'password'
+						) 
+					)
+				)			
+			)
+		)
+	),
 );

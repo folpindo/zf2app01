@@ -5,8 +5,14 @@ use Album\Model\Album;
 use Album\Model\AlbumTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
-
-class Module
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\ModuleManager\Feature\ConsoleUsageProviderInterface;
+use Zend\Console\Adapter\AdapterInterface as Console;
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+class Module implements
+    AutoloaderProviderInterface,
+    ConfigProviderInterface,
+    ConsoleUsageProviderInterface 
 {
     public function getAutoloaderConfig()
     {
@@ -42,6 +48,16 @@ public function getServiceConfig()
                     return new TableGateway('album', $dbAdapter, null, $resultSetPrototype);
                 },
             ),
+        );
+    }
+public function getConsoleUsage(Console $console){
+        return array(
+            // Describe available commands
+            'user resetpassword [--verbose|-v] EMAIL'    => 'Reset password for a user',
+
+            // Describe expected parameters
+            array( 'EMAIL',            'Email of the user for a password reset' ),
+            array( '--verbose|-v',     '(optional) turn on verbose mode'        ),
         );
     }
 }
